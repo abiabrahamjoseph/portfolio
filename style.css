@@ -6,7 +6,8 @@
     --accent: #0ea5e9;
 
     --bg-dark: #f8fafc;
-    --bg-darker: #ffffff;
+    --bg-darker: #f1f5f9;
+    /* Subtle Slate 100 for section contrast */
     --bg-card: #ffffff;
 
     --glass-bg: rgba(255, 255, 255, 0.95);
@@ -57,9 +58,15 @@ body {
 }
 
 section {
-    padding: 100px 0;
+    padding: 120px 0;
+    /* Increased padding for professional breathing room */
     position: relative;
     overflow: hidden;
+    transition: background 0.5s ease;
+}
+
+.bg-darker {
+    background-color: var(--bg-darker) !important;
 }
 
 /* Custom Scrollbar */
@@ -147,21 +154,20 @@ h6 {
 
 .navbar.scrolled {
     padding: 12px 0;
-    background: rgba(6, 182, 212, 0.9);
-    /* Professional Cyan (Slate 500) */
+    background: rgba(255, 255, 255, 0.98);
+    /* Consistent high-end glass, no color switch */
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 10px 30px rgba(6, 182, 212, 0.2);
+    border-bottom: 2px solid rgba(15, 23, 42, 0.05);
+    /* Slightly bolder border for definition */
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.05);
 }
 
 .navbar.scrolled .nav-link {
-    color: rgba(255, 255, 255, 0.9) !important;
+    color: var(--text-primary) !important;
 }
 
 .navbar.scrolled .navbar-brand {
-    color: #ffffff !important;
-    background: none;
-    -webkit-text-fill-color: initial;
+    color: var(--primary) !important;
 }
 
 .navbar-brand {
@@ -339,6 +345,17 @@ h6 {
     color: var(--primary);
     /* Role color should pop */
     font-weight: 600;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+.footer {
+    background: var(--text-primary);
+    color: #94a3b8;
+    padding: 80px 0;
+    font-size: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* =========================
@@ -659,8 +676,26 @@ h6 {
 }
 
 /* =========================
-   ANIMATIONS
+   ULTRA-MODERN ANIMATIONS
    ========================= */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal-on-scroll.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.glass-card,
+.mastery-card,
+.profile-wrapper {
+    transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+    will-change: transform;
+}
+
 @keyframes float {
 
     0%,
