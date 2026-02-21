@@ -1,47 +1,46 @@
-/* =========================
-   MODERN VARIABLES & PALETTE
-   ========================= */
 :root {
-    /* Refined Enterprise Professional Palette */
+    /* Enterprise Professional Palette */
     --primary: #4f46e5;
-    /* Solid Indigo 600 */
     --primary-light: #6366f1;
     --secondary: #6d28d9;
-    /* Deep Violet */
     --accent: #0ea5e9;
-    /* Solid Sky 500 */
 
     --bg-dark: #0f172a;
-    /* Slate 900 */
     --bg-darker: #020617;
-    /* Slate 950 */
-    --bg-card: rgba(30, 41, 59, 0.4);
-    /* Structured Slate 800-ish */
+    --bg-card: rgba(51, 65, 85, 0.5);
+    /* Brighter, more visible light-gray slate */
 
-    --glass-bg: rgba(241, 245, 249, 0.1);
-    --glass-border: rgba(255, 255, 255, 0.05);
-    --glass-highlight: rgba(241, 245, 249, 0.05);
+    --glass-bg: rgba(241, 245, 249, 0.15);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    /* Sharper borders */
 
-    --card-light-gray: rgba(241, 245, 249, 0.08);
-    /* Sophisticated Light Gray */
-
-    --text-primary: #f8fafc;
-    --text-muted: #94a3b8;
-    --text-dark: #1e293b;
-    --text-dim: #64748b;
+    --text-primary: #ffffff;
+    /* Absolute white for max visibility */
+    --text-muted: #cbd5e1;
+    /* Lighter muted text (Slate 300) */
+    --text-dim: #94a3b8;
+    /* Lighter dim text (Slate 400) */
 
     --font-heading: 'Poppins', sans-serif;
     --font-body: 'Inter', sans-serif;
 
-    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-precise: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-    --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
-    --shadow-soft: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    --transition-smooth: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow-soft: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+    --shadow-glow: 0 0 20px rgba(79, 70, 229, 0.2);
 }
 
 /* =========================
    GLOBAL RESET & BASE
+  /* =========================
+   CORE DEFAULTS & SCROLL
    ========================= */
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    /* Base for rem */
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -49,12 +48,25 @@
 }
 
 body {
-    font-family: var(--font-body);
     background-color: var(--bg-darker);
     color: var(--text-primary);
-    overflow-x: hidden;
+    font-family: var(--font-body);
     line-height: 1.6;
+    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    max-width: 1200px;
+    /* Perfect balance for readability */
+    margin: 0 auto;
+}
+
+section {
+    padding: 120px 0;
+    /* Standardized generous spacing */
+    position: relative;
+    overflow: hidden;
 }
 
 /* Custom Scrollbar */
@@ -75,6 +87,9 @@ body {
     background: var(--secondary);
 }
 
+/* =========================
+   TYPOGRAPHY & HEADINGS
+   ========================= */
 h1,
 h2,
 h3,
@@ -82,25 +97,45 @@ h4,
 h5,
 h6 {
     font-family: var(--font-heading);
+    letter-spacing: -0.02em;
     font-weight: 700;
 }
 
-section {
-    padding: 120px 0;
-    position: relative;
-    overflow: hidden;
+.display-5 {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    font-weight: 800;
+}
+
+.text-muted {
+    color: var(--text-muted) !important;
+    font-weight: 400;
+}
+
+.text-dim {
+    color: var(--text-dim) !important;
 }
 
 /* =========================
    GLASS EFFECT UTILITIES
    ========================= */
 .glass-card {
-    background: var(--glass-bg);
+    background: var(--bg-card);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--glass-border);
     border-radius: 20px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    /* Deeper shadow for elevation visibility */
+    padding: 3rem;
+    /* Generous internal padding */
+    transition: var(--transition-precise);
+}
+
+.glass-card:hover {
+    border-color: rgba(79, 70, 229, 0.3);
+    box-shadow: var(--shadow-glow);
 }
 
 /* =========================
@@ -248,7 +283,8 @@ section {
     border: 2px dashed var(--primary);
     border-radius: 50%;
     animation: rotate 20s linear infinite;
-    opacity: 0.5;
+    opacity: 0.8;
+    /* Increased visibility */
 }
 
 .profile-img {
@@ -266,11 +302,14 @@ section {
     margin-bottom: 1.25rem;
     font-weight: 800;
     letter-spacing: -0.025em;
-    background: linear-gradient(to right, #fff, #94a3b8);
+    background: linear-gradient(to right, #ffffff, #cbd5e1);
+    /* Brighter gradient */
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     line-height: 1.1;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+    /* Stronger text shadow for pop */
 }
 
 .hero .lead {
@@ -476,8 +515,10 @@ section {
 }
 
 .skill-tag {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.08);
+    /* More visible background */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    /* Sharper borders */
     padding: 8px 16px;
     border-radius: 6px;
     font-size: 0.8rem;
@@ -636,64 +677,73 @@ section {
     }
 }
 
-/* Responsive Grid Adjustments */
+/* =========================
+   PERFECT CROSS-DEVICE AUDIT
+   ========================= */
+@media (max-width: 991px) {
+    .hero h1 {
+        font-size: 2.8rem;
+    }
+
+    .display-5 {
+        font-size: 2.5rem;
+    }
+}
+
 @media (max-width: 768px) {
+    section {
+        padding: 80px 0;
+    }
+
     .hero {
-        min-height: 80vh;
+        min-height: 100vh;
         padding-top: 100px;
     }
 
     .hero h1 {
-        font-size: 2rem;
-        /* Adjusted proportionally */
+        font-size: 2.25rem;
     }
 
     .hero .lead {
-        font-size: 1rem;
-    }
-
-    section {
-        padding: 60px 0;
-    }
-
-    .profile-img {
-        width: 150px;
-        height: 150px;
+        font-size: 1.1rem;
     }
 
     .skills-category-grid {
         grid-template-columns: 1fr;
-        gap: 15px;
+        gap: 20px;
     }
 
     .category-card {
-        padding: 25px 20px;
-    }
-
-    .skill-tag {
-        font-size: 0.8rem;
-        padding: 5px 10px;
-    }
-
-    .tech-mastery-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-
-    .mastery-card {
-        padding: 25px 15px;
-    }
-
-    .stats-card {
-        padding: 15px !important;
-    }
-
-    .nav-link {
-        padding: 10px 0;
-        text-align: center;
+        padding: 30px 20px;
     }
 
     .glass-card {
         padding: 1.5rem !important;
+    }
+
+    .navbar-brand {
+        font-size: 1.25rem;
+    }
+
+    .container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .profile-img {
+        width: 160px;
+        height: 160px;
+    }
+
+    .experience-layout::before {
+        left: 15px;
+    }
+
+    .exp-item {
+        padding-left: 45px;
+    }
+
+    .exp-dot {
+        left: 6px;
     }
 }
