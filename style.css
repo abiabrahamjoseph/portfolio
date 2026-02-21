@@ -1,30 +1,42 @@
+/* ==========================================================================
+   ABI ABRAHAM JOSEPH - PROJECT GRAND MASTER (v8.0)
+   Neo-Elite Design System: Prismatic Glass + Liquid Experience
+   ========================================================================== */
+
 :root {
-    /* Enterprise Professional Light Palette */
-    --primary: #4f46e5;
-    --secondary: #6d28d9;
-    --accent: #06b6d4;
+    /* Prismatic Palette */
+    --primary: #6366f1;
+    /* Indigo */
+    --secondary: #ec4899;
+    /* Pink */
+    --accent: #0ea5e9;
+    /* Sky */
+    --success: #10b981;
 
-    --bg-dark: #f8fafc;
+    /* Background Surface */
+    --bg-base: #f8fafc;
     --bg-darker: #f1f5f9;
-    /* Subtle Slate 100 for section contrast */
-    --bg-card: #ffffff;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(99, 102, 241, 0.1);
 
-    --glass-bg: rgba(255, 255, 255, 0.9);
-    --glass-border: rgba(255, 255, 255, 0.4);
-
+    /* Text Suite */
     --text-primary: #0f172a;
     --text-secondary: #475569;
     --text-dim: #94a3b8;
 
-    --font-heading: 'Plus Jakarta Sans', sans-serif;
-    --font-body: 'Outfit', sans-serif;
+    /* Reveal Elements */
+    --reveal-overlay: #0f172a;
+    --scroll-bar-fill: var(--primary);
 
-    --scroll-bar-bg: rgba(79, 70, 229, 0.1);
-    --scroll-bar-fill: linear-gradient(90deg, var(--primary), var(--accent));
+    /* Shadow & Glow */
+    --shadow-premium: 0 20px 40px -10px rgba(15, 23, 42, 0.1);
+    --shadow-glow: 0 0 30px rgba(99, 102, 241, 0.2);
+    --shadow-prismatic: 0 0 40px rgba(236, 72, 153, 0.15);
 
-    --transition-precise: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    --shadow-premium: 0 20px 50px -12px rgba(15, 23, 42, 0.1);
+    /* Timing & Easing */
+    --transition-liquid: 1.2s cubic-bezier(0.85, 0, 0.15, 1);
+    --transition-precise: 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    --transition-magnetic: 0.15s ease-out;
 }
 
 /* =========================
@@ -43,15 +55,14 @@ html {
 }
 
 body {
-    background-color: #ffffff;
-    /* Enforced Pure White */
+    background-color: var(--bg-base);
     color: var(--text-primary);
-    font-family: var(--font-body);
-    font-size: 15px;
-    /* High-density base size (mimics scale) */
-    line-height: 1.6;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     overflow-x: hidden;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    /* Visibility Safe-Guard */
+    opacity: 1 !important;
 }
 
 .container {
@@ -352,13 +363,19 @@ h4,
     top: 0;
     left: 0;
     z-index: 1;
+    /* Sits behind hero-content (z-index 5) */
     pointer-events: none;
+    overflow: hidden;
+}
+
+#particles-js canvas {
+    display: block;
+    opacity: 0.6;
 }
 
 .hero-content {
     position: relative;
-    z-index: 5;
-    /* Ensure content is above background elements */
+    z-index: 10;
 }
 
 .profile-wrapper {
@@ -375,8 +392,9 @@ h4,
     bottom: -15px;
     border: 3px dashed var(--primary);
     border-radius: 50%;
-    animation: rotate 15s linear infinite;
-    opacity: 0.9;
+    animation: rotate 20s linear infinite;
+    opacity: 0.8;
+    filter: drop-shadow(0 0 15px var(--primary));
 }
 
 .profile-img {
@@ -761,42 +779,68 @@ h4,
     opacity: 0.7;
 }
 
-/* CINEMATIC ENTRANCE (SKEW-SCALE-FADE) */
-.reveal-on-scroll {
-    opacity: 0;
-    transform: translateY(40px) skewY(2deg) scale(0.96);
-    filter: blur(10px);
-    transition:
-        opacity 1.2s cubic-bezier(0.2, 1, 0.3, 1),
-        transform 1.2s cubic-bezier(0.2, 1, 0.3, 1),
-        filter 1.2s cubic-bezier(0.2, 1, 0.3, 1);
-    will-change: transform, opacity, filter;
-}
-
-.reveal-on-scroll.revealed {
-    opacity: 1;
-    transform: translateY(0) skewY(0deg) scale(1);
-    filter: blur(0);
-}
-
-/* CINEMATIC PAGE LOADER Overlay */
+/* CINEMATIC PAGE LOADER (RELIABILITY TUNED) */
 .page-reveal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--text-primary);
+    background: #0f172a;
+    /* Elite Dark Navy */
     z-index: 9999;
     pointer-events: none;
     transform-origin: top;
-    transition: transform 1.4s cubic-bezier(0.8, 0, 0.2, 1);
+    transition: transform 1.4s cubic-bezier(0.8, 0, 0.2, 1), opacity 1s ease;
+    /* ABSOLUTE FAILSAFE: High-End Cinematic Duration */
+    animation: forceReveal 2.5s cubic-bezier(0.8, 0, 0.2, 1) forwards;
+    animation-delay: 0.8s;
+}
+
+@keyframes forceReveal {
+    0% {
+        transform: scaleY(1);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    80% {
+        transform: scaleY(1);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    100% {
+        transform: scaleY(0);
+        opacity: 0;
+        visibility: hidden;
+    }
 }
 
 .page-reveal-overlay.loaded {
     transform: scaleY(0);
-    visibility: hidden;
     opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: -100;
+    animation: none !important;
+    /* Kill failsafe if JS works */
+}
+
+/* CINEMATIC ENTRANCE (SKEW-SCALE-FADE) */
+.reveal-on-scroll {
+    opacity: 1;
+    transform: translateY(0) skewY(0deg) scale(1);
+    transition:
+        opacity 1.2s cubic-bezier(0.2, 1, 0.3, 1),
+        transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+    will-change: transform, opacity;
+}
+
+/* If JS is active, hide them so they can entrance cinematically */
+.js-active .reveal-on-scroll:not(.revealed) {
+    opacity: 0;
+    transform: translateY(30px) skewY(1deg) scale(0.98);
 }
 
 .glass-card,
@@ -841,9 +885,15 @@ h4,
 }
 
 /* =========================
-   PERFECT CROSS-DEVICE AUDIT
+   PERFECT CROSS-DEVICE AUDIT (v8.0)
    ========================= */
 @media (max-width: 991px) {
+
+    .custom-cursor,
+    .custom-cursor-follower {
+        display: none !important;
+    }
+
     .hero h1 {
         font-size: 2.8rem;
     }
@@ -856,6 +906,23 @@ h4,
         text-align: center;
         padding: 12px 0;
     }
+}
+
+/* Liquid Scroll Reveal Logic */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    filter: blur(10px);
+    transition:
+        opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+        transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+        filter 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reveal-on-scroll.revealed {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
 }
 
 @media (max-width: 768px) {
