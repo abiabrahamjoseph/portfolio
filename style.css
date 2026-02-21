@@ -1,6 +1,6 @@
 /* ==========================================================================
-   ABI ABRAHAM JOSEPH - PROJECT GRAND MASTER (v8.0)
-   Neo-Elite Design System: Prismatic Glass + Liquid Experience
+   ABI ABRAHAM JOSEPH - PROJECT GRAND MASTER (v8.9)
+   Definitive UI/UX Suite: Neo-Elite Prismatic Design
    ========================================================================== */
 
 :root {
@@ -384,18 +384,7 @@ h4,
     margin-bottom: 2rem;
 }
 
-.profile-ring {
-    position: absolute;
-    top: -15px;
-    left: -15px;
-    right: -15px;
-    bottom: -15px;
-    border: 3px dashed var(--primary);
-    border-radius: 50%;
-    animation: rotate 20s linear infinite;
-    opacity: 0.8;
-    filter: drop-shadow(0 0 15px var(--primary));
-}
+/* Removed .profile-ring */
 
 .profile-img {
     width: 200px;
@@ -408,23 +397,27 @@ h4,
 }
 
 .hero h1 {
-    font-size: 3.2rem;
-    margin-bottom: 1.25rem;
+    font-size: clamp(2rem, 5vw, 3.3rem);
+    margin-bottom: 2rem;
+    /* Increased from 1.2rem for more breathing room */
     font-weight: 800;
     letter-spacing: -0.025em;
-    background: linear-gradient(to right, var(--text-primary), var(--primary));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    line-height: 1.1;
-    filter: none;
-    /* No shadow needed on white bg */
+    color: #000000;
+    line-height: 1.15;
+    position: relative;
+    z-index: 10;
 }
 
 .hero .lead {
-    font-size: 1.5rem;
-    color: var(--text-muted);
-    font-weight: 300;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+    /* Increased to push buttons down */
+    color: var(--primary);
+    position: relative;
+    z-index: 10;
 }
 
 .typewriter {
