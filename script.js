@@ -17,8 +17,8 @@ window.addEventListener('scroll', () => {
 const typewriterElement = document.getElementById('typewriter');
 const roles = [
     'IT Administrator',
+    'System Admin',
     'Technical Support Specialist',
-    'Systems Enthusiast',
     'Cybersecurity Aspirant'
 ];
 
@@ -145,7 +145,7 @@ if (particlesContainer) {
             let y = (Math.random() * canvas.height);
             let directionX = (Math.random() * 0.5) - 0.25;
             let directionY = (Math.random() * 0.5) - 0.25;
-            let color = 'rgba(79, 70, 229, 0.3)'; // Lighter indigo for clean white bg
+            let color = 'rgba(79, 70, 229, 0.4)'; // Sharper, more opaque particles
 
             particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
         }
@@ -168,8 +168,8 @@ if (particlesContainer) {
                     ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
                 if (distance < (canvas.width / 10) * (canvas.height / 10)) {
                     opacityValue = 1 - (distance / 20000);
-                    ctx.strokeStyle = 'rgba(79, 70, 229,' + opacityValue * 0.5 + ')'; // Increased visibility
-                    ctx.lineWidth = 1.5; // Slightly thicker lines for visibility
+                    ctx.strokeStyle = 'rgba(79, 70, 229,' + opacityValue * 0.7 + ')'; // Sharper lines (0.5 -> 0.7)
+                    ctx.lineWidth = 1.2; // Thinner but more opaque for "sharp" look
                     ctx.beginPath();
                     ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
                     ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
