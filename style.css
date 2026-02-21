@@ -1,4 +1,4 @@
-:root {
+\:root {
     /* Enterprise Professional Light Palette */
     --primary: #4f46e5;
     --primary-light: #6366f1;
@@ -49,6 +49,13 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+
+    /* 85% View Scaling Implementation */
+    zoom: 0.85;
+    -moz-transform: scale(0.85);
+    -moz-transform-origin: top center;
+    transform: scale(0.85);
+    transform-origin: top center;
 }
 
 .container {
