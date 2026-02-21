@@ -145,7 +145,7 @@ if (particlesContainer) {
             let y = (Math.random() * canvas.height);
             let directionX = (Math.random() * 0.5) - 0.25;
             let directionY = (Math.random() * 0.5) - 0.25;
-            let color = 'rgba(79, 70, 229, 0.4)'; // Indigo particle for white background
+            let color = 'rgba(79, 70, 229, 0.3)'; // Lighter indigo for clean white bg
 
             particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
         }
@@ -168,7 +168,7 @@ if (particlesContainer) {
                     ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
                 if (distance < (canvas.width / 10) * (canvas.height / 10)) {
                     opacityValue = 1 - (distance / 20000);
-                    ctx.strokeStyle = 'rgba(79, 70, 229,' + opacityValue * 0.4 + ')'; // Indigo lines
+                    ctx.strokeStyle = 'rgba(79, 70, 229,' + opacityValue * 0.2 + ')'; // Subtle lines
                     ctx.lineWidth = 1;
                     ctx.beginPath();
                     ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
