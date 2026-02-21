@@ -126,7 +126,8 @@ h6 {
 
 .glass-card:hover {
     border-color: var(--primary);
-    box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 20px 60px -10px rgba(0, 0, 0, 0.12);
+    transform: translateY(-8px);
 }
 
 /* =========================
@@ -166,11 +167,13 @@ h6 {
 .navbar-brand {
     font-size: 1.5rem;
     font-weight: 800;
+    color: var(--primary);
     background: linear-gradient(to right, var(--primary), var(--secondary));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: -0.5px;
+    transition: var(--transition-smooth);
 }
 
 .nav-link {
@@ -388,7 +391,7 @@ h6 {
 .skill-card:hover {
     transform: translateY(-10px);
     border-color: var(--primary);
-    background: rgba(15, 23, 42, 0.8);
+    background: rgba(79, 70, 229, 0.05);
 }
 
 /* =========================
@@ -438,8 +441,8 @@ h6 {
 .mastery-card:hover {
     transform: translateY(-10px) scale(1.02);
     border-color: var(--primary);
-    box-shadow: 0 0 30px rgba(241, 245, 249, 0.15);
-    background: rgba(241, 245, 249, 0.12);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    background: #ffffff;
 }
 
 .mastery-icon {
