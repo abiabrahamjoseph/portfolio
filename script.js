@@ -1,11 +1,7 @@
 /* ==========================================================================
-   ABI ABRAHAM JOSEPH - PORTFOLIO v6.0 (MASTER PLATINUM EDITION)
-   Script Suite: Bespoke Anim-Engine + Failsafe Rendering
+   ABI ABRAHAM JOSEPH - PORTFOLIO
    ========================================================================== */
 
-/**
- * 1. Project Grand Master Signature Cursor (v8.0)
- */
 function initCustomCursor() {
     if (window.innerWidth < 992) return;
 
@@ -237,7 +233,7 @@ function initParticlesEngine() {
 }
 
 /**
- * 4. Master Reveal Engine (v9.8 Hardened)
+ * 4. Master Reveal Engine (v9.8 )
  */
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -324,13 +320,13 @@ function initEliteInteractions() {
 }
 
 /**
- * Main Orchestrator (Project Grand Master v8.0)
+ * Main Orchestrator (portfoli)
  */
 document.addEventListener('DOMContentLoaded', () => {
     initGlobalReveals();
     document.documentElement.classList.add('js-active');
 
-    // Grand Master Dynamic Triggers
+    // Master Dynamic Triggers
     initCustomCursor();
     initNavSync();
     handleTypewriter();
@@ -338,7 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initEliteInteractions();
 
     console.log(
-        "%c Abi Abraham Joseph %c Grand Master v10.0 %c",
+        "%c Abi Abraham Joseph %c portfolio %c",
         "color: #fff; background: #6366f1; padding: 5px 12px; border-radius: 4px 0 0 4px; font-weight: bold;",
         "color: #6366f1; background: #f8fafc; padding: 5px 12px; border-radius: 0 4px 4px 0; font-weight: bold;",
         "color: #94a3b8; margin-left: 10px; font-style: italic;"
