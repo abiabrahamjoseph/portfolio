@@ -5,30 +5,24 @@
     --secondary: #6d28d9;
     --accent: #0ea5e9;
 
-    --bg-dark: #f1f5f9;
-    /* Light Slate 100 */
+    --bg-dark: #f8fafc;
     --bg-darker: #ffffff;
-    /* Pure White */
-    --bg-card: rgba(255, 255, 255, 0.9);
+    --bg-card: #ffffff;
 
-    --glass-bg: rgba(255, 255, 255, 0.8);
+    --glass-bg: rgba(255, 255, 255, 0.95);
     --glass-border: rgba(15, 23, 42, 0.1);
-    /* Subtle dark border */
 
     --text-primary: #0f172a;
-    /* Deep Slate for max contrast */
     --text-muted: #475569;
-    /* Slate 600 */
     --text-dim: #64748b;
-    /* Slate 500 */
 
     --font-heading: 'Poppins', sans-serif;
     --font-body: 'Inter', sans-serif;
 
     --transition-precise: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
     --transition-smooth: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    --shadow-soft: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
-    --shadow-glow: 0 0 30px rgba(79, 70, 229, 0.15);
+    --shadow-soft: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
+    --shadow-glow: 0 0 30px rgba(79, 70, 229, 0.1);
 }
 
 /* =========================
@@ -49,7 +43,8 @@ html {
 }
 
 body {
-    background-color: var(--bg-darker);
+    background-color: #ffffff;
+    /* Enforced Pure White */
     color: var(--text-primary);
     font-family: var(--font-body);
     line-height: 1.6;
@@ -140,12 +135,15 @@ h6 {
    NAVBAR
    ========================= */
 .navbar {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.95);
+    /* More opaque white */
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(15, 23, 42, 0.05);
-    padding: 20px 0;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+    /* Clearly defined border */
+    padding: 15px 0;
     transition: var(--transition-smooth);
+    z-index: 1000;
 }
 
 .navbar.scrolled {
@@ -248,10 +246,11 @@ h6 {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 140px 0 100px;
-    /* Increased top padding to fix visibility */
-    background: radial-gradient(circle at top right, rgba(79, 70, 229, 0.05), transparent),
-        radial-gradient(circle at bottom left, rgba(14, 165, 233, 0.05), transparent);
+    padding: 180px 0 120px;
+    /* Enforced large padding for visibility */
+    background: #ffffff;
+    position: relative;
+    z-index: 10;
 }
 
 #particles-js {
@@ -400,9 +399,9 @@ h6 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: var(--bg-card);
+    background: #ffffff;
     border-radius: 12px;
-    /* Smaller radius for more formal look */
+    box-shadow: var(--shadow-soft);
 }
 
 .mastery-card::before {
