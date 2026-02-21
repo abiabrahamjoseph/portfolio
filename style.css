@@ -397,7 +397,8 @@ h4,
 }
 
 .hero h1 {
-    font-size: clamp(2rem, 5vw, 3.3rem);
+    font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+    /* Slightly smaller for premium balance */
     margin-bottom: 2rem;
     /* Increased from 1.2rem for more breathing room */
     font-weight: 800;
