@@ -1,52 +1,93 @@
 /* ==========================================================================
-   ABI ABRAHAM JOSEPH - PORTFOLIO v4.1 (DEFINITIVE ELITE)
-   Master Script: Bold Vectors + Elite Interactions
+   ABI ABRAHAM JOSEPH - PORTFOLIO v6.0 (MASTER PLATINUM EDITION)
+   Script Suite: Bespoke Anim-Engine + Failsafe Rendering
    ========================================================================== */
 
 /**
- * 1. Global Navigation & Scroll Progress
+ * 1. Project Grand Master Signature Cursor (v8.0)
  */
-const navbar = document.getElementById('navbar');
-const scrollProgress = document.getElementById('scrollProgress');
+function initCustomCursor() {
+    if (window.innerWidth < 992) return;
 
-window.addEventListener('scroll', () => {
-    // Navbar Glass Sync
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
+    const cursor = document.getElementById('customCursor');
+    const follower = document.getElementById('cursorFollower');
+    if (!cursor || !follower) return;
 
-    // High-End Scroll Progress indicator
-    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = (winScroll / height) * 100;
-    if (scrollProgress) scrollProgress.style.width = scrolled + "%";
-});
+    cursor.style.display = 'block';
+    follower.style.display = 'block';
 
-// Mobile Nav Auto-Collapse with Smooth Scroll
-const navLinks = document.querySelectorAll('.nav-link');
-const navCollapse = document.querySelector('.navbar-collapse');
-navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        const targetId = link.getAttribute('href');
-        if (targetId.startsWith('#')) {
-            e.preventDefault();
-            const targetEl = document.querySelector(targetId);
-            if (targetEl) {
-                window.scrollTo({
-                    top: targetEl.offsetTop - 70, // Header offset
-                    behavior: 'smooth'
-                });
-            }
-        }
-
-        if (window.innerWidth < 992 && navCollapse.classList.contains('show')) {
-            const bsCollapse = new bootstrap.Collapse(navCollapse);
-            bsCollapse.hide();
-        }
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.transform = `translate3d(${e.clientX - 10}px, ${e.clientY - 10}px, 0)`;
+        follower.style.transform = `translate3d(${e.clientX - 20}px, ${e.clientY - 20}px, 0)`;
     });
-});
+
+    document.querySelectorAll('a, button, .glass-card, .mastery-card').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursor.style.transform += ' scale(2.5)';
+            cursor.style.opacity = '0.5';
+            follower.style.transform += ' scale(0.5)';
+        });
+        el.addEventListener('mouseleave', () => {
+            cursor.style.transform = cursor.style.transform.replace(' scale(2.5)', '');
+            cursor.style.opacity = '1';
+            follower.style.transform = follower.style.transform.replace(' scale(0.5)', '');
+        });
+    });
+}
+
+/**
+ * 2. Intelligent Navigation (v8.1 High-Precision)
+ */
+function initNavSync() {
+    const navbar = document.getElementById('navbar');
+    const scrollProgress = document.getElementById('scrollProgress');
+    const sections = document.querySelectorAll('section[id]');
+    let lastScrollY = window.scrollY;
+
+    window.addEventListener('scroll', () => {
+        // Navbar State
+        if (window.scrollY > 100) {
+            navbar.classList.add('scrolled');
+            navbar.style.transform = window.scrollY > lastScrollY ? 'translateY(-100%)' : 'translateY(0)';
+        } else {
+            navbar.classList.remove('scrolled');
+            navbar.style.transform = 'translateY(0)';
+        }
+        lastScrollY = window.scrollY;
+
+        // Selection Logic Corrected: High-Precision Active State
+        let current = "";
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= sectionTop - 150) {
+                current = section.getAttribute("id");
+            }
+        });
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove("active");
+            if (link.getAttribute("href").includes(current)) {
+                link.classList.add("active");
+            }
+        });
+
+        // Progress
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (window.scrollY / height) * 100;
+        if (scrollProgress) scrollProgress.style.width = scrolled + "%";
+    });
+
+    // Mobile Collapse
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            const collapse = document.querySelector('.navbar-collapse');
+            if (collapse.classList.contains('show')) {
+                new bootstrap.Collapse(collapse).hide();
+            }
+        });
+    });
+}
 
 /**
  * 2. Typewriter Effect (Cinematic Word Reveal + Technical Roles)
@@ -66,7 +107,7 @@ let isDeleting = false;
 let typeSpeed = 100;
 
 function handleTypewriter() {
-    // Initial Word Reveal for the Name Title
+    // Initial Name Title Word Reveal
     const heroTitle = document.querySelector('.reveal-text');
     if (heroTitle && !heroTitle.classList.contains('done')) {
         const text = heroTitle.textContent;
@@ -105,234 +146,192 @@ function handleTypewriter() {
 }
 
 /**
- * 3. Enhanced Platinum Vector System (Bold + Inner Glow)
+ * 3. Platinum Vector Constellation (v6.4 Optimized)
  */
-const canvas = document.createElement('canvas');
-const ctx = canvas.getContext('2d');
-const particlesContainer = document.getElementById('particles-js');
+/**
+ * 3. Grand Master Vector Constellation (v8.1 High-Impact)
+ */
+function initParticlesEngine() {
+    const container = document.getElementById('particles-js');
+    if (!container) return;
 
-if (particlesContainer) {
-    particlesContainer.appendChild(canvas);
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    container.appendChild(canvas);
 
-    let particlesArray = [];
-    const mouse = { x: null, y: null, radius: 180 };
+    let particles = [];
+    const mouse = { x: null, y: null, radius: 200 };
 
-    window.addEventListener('mousemove', (event) => {
-        mouse.x = event.x;
-        mouse.y = event.y;
-
-        // Interactive Mesh Background Motion
-        const mesh = document.querySelector('.mesh-gradient');
-        if (mesh) {
-            const x = (event.clientX / window.innerWidth) * 25;
-            const y = (event.clientY / window.innerHeight) * 25;
-            mesh.style.transform = `translate(${x}px, ${y}px)`;
-        }
+    window.addEventListener('mousemove', (e) => {
+        const rect = container.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
     });
 
-    function setCanvasSize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        initParticles();
-    }
-    window.addEventListener('resize', setCanvasSize);
-    setCanvasSize();
-
-    class Particle {
-        constructor(x, y, dx, dy, size, color) {
-            this.x = x;
-            this.y = y;
-            this.dx = dx;
-            this.dy = dy;
-            this.size = size;
-            this.color = color;
-            this.baseX = x;
-            this.baseY = y;
-            this.density = (Math.random() * 20) + 1;
-        }
-
-        draw() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-            ctx.fillStyle = this.color;
-            ctx.fill();
-
-            // Subtle glow for the node itself (Referenced style)
-            if (this.size > 2) {
-                ctx.shadowBlur = 10;
-                ctx.shadowColor = 'rgba(79, 70, 229, 0.4)';
-            } else {
-                ctx.shadowBlur = 0;
-            }
-        }
-
-        update() {
-            let dx = mouse.x - this.x;
-            let dy = mouse.y - this.y;
-            let dist = Math.sqrt(dx * dx + dy * dy);
-
-            if (dist < mouse.radius) {
-                let force = (mouse.radius - dist) / mouse.radius;
-                this.x -= (dx / dist) * force * this.density;
-                this.y -= (dy / dist) * force * this.density;
-            } else {
-                if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
-                if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
-            }
-
-            this.x += this.dx;
-            this.y += this.dy;
-            this.baseX += this.dx;
-            this.baseY += this.dy;
-
-            if (this.baseX > canvas.width || this.baseX < 0) this.dx = -this.dx;
-            if (this.baseY > canvas.height || this.baseY < 0) this.dy = -this.dy;
-
-            this.draw();
-        }
-    }
-
-    function initParticles() {
-        particlesArray = [];
-        let count = (canvas.height * canvas.width) / 8000; // Referenced High Density
+    function init() {
+        canvas.width = container.offsetWidth;
+        canvas.height = container.offsetHeight;
+        particles = [];
+        let count = Math.min((canvas.width * canvas.height) / 7000, 180);
         for (let i = 0; i < count; i++) {
-            let size = (Math.random() * 3.5) + 1.0;
-            let x = Math.random() * canvas.width;
-            let y = Math.random() * canvas.height;
-            let dx = (Math.random() * 0.4) - 0.2;
-            let dy = (Math.random() * 0.4) - 0.2;
-            let color = 'rgba(79, 70, 229, 0.5)';
-            particlesArray.push(new Particle(x, y, dx, dy, size, color));
-        }
-    }
-
-    function connect() {
-        for (let a = 0; a < particlesArray.length; a++) {
-            for (let b = a; b < particlesArray.length; b++) {
-                let dx = particlesArray[a].x - particlesArray[b].x;
-                let dy = particlesArray[a].y - particlesArray[b].y;
-                let dist = dx * dx + dy * dy;
-
-                let range = (canvas.width / 8) * (canvas.height / 8);
-                if (dist < range) {
-                    let opacity = 1 - (dist / range);
-                    ctx.strokeStyle = `rgba(79, 70, 229, ${opacity * 0.4})`;
-                    ctx.lineWidth = 1.5; // Bold Connection (Optimized balance)
-
-                    // Constellation glow
-                    ctx.shadowBlur = 5;
-                    ctx.shadowColor = 'rgba(79, 70, 229, 0.2)';
-
-                    ctx.beginPath();
-                    ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-                    ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
-                    ctx.stroke();
-                    ctx.shadowBlur = 0;
-                }
-            }
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                dx: (Math.random() - 0.5) * 0.8,
+                dy: (Math.random() - 0.5) * 0.8,
+                size: Math.random() * 2 + 1,
+                color: 'rgba(99, 102, 241, 0.5)'
+            });
         }
     }
 
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particlesArray.forEach(p => p.update());
-        connect();
+        particles.forEach(p => {
+            p.x += p.dx;
+            p.y += p.dy;
+
+            if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+            if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+
+            // Draw Node
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fillStyle = p.color;
+            ctx.fill();
+
+            // Interactivity
+            let dx = mouse.x - p.x;
+            let dy = mouse.y - p.y;
+            let dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < mouse.radius) {
+                ctx.beginPath();
+                ctx.strokeStyle = `rgba(99, 102, 241, ${0.4 * (1 - dist / mouse.radius)})`;
+                ctx.lineWidth = 0.5;
+                ctx.moveTo(p.x, p.y);
+                ctx.lineTo(mouse.x, mouse.y);
+                ctx.stroke();
+            }
+
+            // Connection Logic
+            particles.forEach(p2 => {
+                let dx = p.x - p2.x;
+                let dy = p.y - p2.y;
+                let dist = dx * dx + dy * dy;
+                if (dist < 10000) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(99, 102, 241, ${0.2 * (1 - dist / 10000)})`;
+                    ctx.lineWidth = 0.8;
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(p2.x, p2.y);
+                    ctx.stroke();
+                }
+            });
+        });
         requestAnimationFrame(animate);
     }
+
+    window.addEventListener('resize', init);
+    init();
+    animate();
 }
 
 /**
- * 4. Cinematic Intersection Observers (Skew-Scale Engine)
+ * 4. Master Reveal Engine (v6.4 Bulletproof)
  */
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('revealed');
-
-            // Mastery Bar trigger
             const bars = entry.target.querySelectorAll('.mastery-bar');
             bars.forEach(bar => {
                 const targetW = bar.style.width;
                 bar.style.width = '0';
-                setTimeout(() => bar.style.width = targetW, 200);
+                setTimeout(() => bar.style.width = targetW, 300);
             });
-
             revealObserver.unobserve(entry.target);
         }
     });
-}, { threshold: 0.1, rootMargin: "0px 0px -10px 0px" });
+}, { threshold: 0.1, rootMargin: "0px 0px -30px 0px" });
 
 function initGlobalReveals() {
-    // Cinematic Page Loader logic
     const loader = document.getElementById('pageReveal');
-    if (loader) {
-        setTimeout(() => loader.classList.add('loaded'), 500);
-    }
+    const dismissLoader = () => {
+        if (loader) {
+            loader.classList.add('loaded');
+            setTimeout(() => { if (loader) loader.style.display = 'none'; }, 1500);
+        }
 
+        // RE-ENABLED: CINEMATIC STAGGER ENGINE
+        // Triggers reveal-on-scroll elements with a sequential delay
+        document.querySelectorAll('.reveal-on-scroll:not(.revealed)').forEach((el, i) => {
+            setTimeout(() => el.classList.add('revealed'), i * 120);
+        });
+    };
+
+    // 1. First, tag all elements for reveal
     document.querySelectorAll('section, .glass-card, .mastery-card, .exp-item, .category-card, .contact-link').forEach((el, i) => {
         el.classList.add('reveal-on-scroll');
-        // Cinematic Stagger Logic
-        if (el.parentElement.classList.contains('row') || el.parentElement.classList.contains('skills-category-grid')) {
-            el.style.transitionDelay = `${(i % 5) * 0.15}s`;
+        if (el.parentElement && (el.parentElement.classList.contains('row') || el.parentElement.classList.contains('skills-category-grid'))) {
+            el.style.transitionDelay = `${(i % 4) * 0.15}s`;
         }
         revealObserver.observe(el);
     });
+
+    // 2. ONLY THEN trigger the reveal
+    dismissLoader();
 }
 
 /**
- * 5. Magnetic Physics & 3D Parallax
+ * 5. Premium Interactive Physics
  */
 function initEliteInteractions() {
     if (window.innerWidth <= 992) return;
-
-    // Magnetic Buttons
-    const magnets = document.querySelectorAll('.btn-modern');
-    magnets.forEach(btn => {
+    document.querySelectorAll('.btn-modern').forEach(btn => {
         btn.addEventListener('mousemove', (e) => {
             const rect = btn.getBoundingClientRect();
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
-            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px) scale(1.05)`;
-            btn.style.boxShadow = '0 10px 30px rgba(79, 70, 229, 0.2)';
+            btn.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px) scale(1.04)`;
         });
         btn.addEventListener('mouseleave', () => {
-            btn.style.transform = `translate(0px, 0px) scale(1)`;
-            btn.style.boxShadow = 'none';
+            btn.style.transform = 'translate(0, 0) scale(1)';
         });
     });
-
-    // 3D Para-Tilt
-    const cards = document.querySelectorAll('.glass-card, .mastery-card, .profile-wrapper');
-    cards.forEach(card => {
-        card.style.transition = 'transform 0.1s ease-out, box-shadow 0.3s ease';
+    document.querySelectorAll('.glass-card, .mastery-card, .profile-wrapper').forEach(card => {
+        card.style.transition = 'transform 0.15s ease-out, box-shadow 0.3s ease';
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const xc = rect.width / 2;
-            const yc = rect.height / 2;
-            card.style.transform = `perspective(1000px) rotateX(${(yc - y) / 15}deg) rotateY(${(x - xc) / 15}deg) scale3d(1.02, 1.02, 1.02)`;
+            const x = (e.clientX - rect.left) / rect.width;
+            const y = (e.clientY - rect.top) / rect.height;
+            const rotateX = (0.5 - y) * 12;
+            const rotateY = (x - 0.5) * 12;
+            card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
         });
         card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+            card.style.transform = 'perspective(1200px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
         });
     });
 }
 
 /**
- * Main Initialization
+ * Main Orchestrator (Project Grand Master v8.0)
  */
 document.addEventListener('DOMContentLoaded', () => {
-    handleTypewriter();
-    if (particlesContainer) animate();
     initGlobalReveals();
+    document.documentElement.classList.add('js-active');
+
+    // Grand Master Dynamic Triggers
+    initCustomCursor();
+    initNavSync();
+    handleTypewriter();
+    initParticlesEngine();
     initEliteInteractions();
 
-    // Final Signature Handover logic
     console.log(
-        "%c Abi Abraham Joseph %c Definitive Elite Portfolio v5.1 Platinum %c",
-        "color: #fff; background: #4f46e5; padding: 5px 12px; border-radius: 4px 0 0 4px; font-weight: bold;",
-        "color: #4f46e5; background: #f1f5f9; padding: 5px 12px; border-radius: 0 4px 4px 0; font-weight: bold;",
+        "%c Abi Abraham Joseph %c Grand Master v8.1 %c",
+        "color: #fff; background: #6366f1; padding: 5px 12px; border-radius: 4px 0 0 4px; font-weight: bold;",
+        "color: #6366f1; background: #f8fafc; padding: 5px 12px; border-radius: 0 4px 4px 0; font-weight: bold;",
         "color: #94a3b8; margin-left: 10px; font-style: italic;"
     );
 });
