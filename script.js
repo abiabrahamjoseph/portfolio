@@ -329,7 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initEliteInteractions();
 
     console.log(
-        "%c Abi Abraham Joseph %c Grand Master v9.0 %c",
+        "%c Abi Abraham Joseph %c Grand Master v9.4 %c",
         "color: #fff; background: #6366f1; padding: 5px 12px; border-radius: 4px 0 0 4px; font-weight: bold;",
         "color: #6366f1; background: #f8fafc; padding: 5px 12px; border-radius: 0 4px 4px 0; font-weight: bold;",
         "color: #94a3b8; margin-left: 10px; font-style: italic;"
