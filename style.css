@@ -57,14 +57,13 @@ body {
 }
 
 .container {
-    max-width: 1200px;
-    /* Perfect balance for readability */
+    max-width: 1240px;
     margin: 0 auto;
+    padding: 0 20px;
 }
 
 section {
-    padding: 120px 0;
-    /* Standardized generous spacing */
+    padding: 100px 0;
     position: relative;
     overflow: hidden;
 }
@@ -688,11 +687,16 @@ h6 {
     .display-5 {
         font-size: 2.5rem;
     }
+
+    .nav-link {
+        text-align: center;
+        padding: 12px 0;
+    }
 }
 
 @media (max-width: 768px) {
     section {
-        padding: 80px 0;
+        padding: 70px 0;
     }
 
     .hero {
@@ -718,16 +722,11 @@ h6 {
     }
 
     .glass-card {
-        padding: 1.5rem !important;
+        padding: 2rem !important;
     }
 
     .navbar-brand {
         font-size: 1.25rem;
-    }
-
-    .container {
-        padding-left: 20px;
-        padding-right: 20px;
     }
 
     .profile-img {
@@ -745,5 +744,14 @@ h6 {
 
     .exp-dot {
         left: 6px;
+    }
+
+    .btn-modern {
+        width: 100%;
+    }
+
+    .hero .d-flex {
+        flex-direction: column;
+        gap: 15px !important;
     }
 }
