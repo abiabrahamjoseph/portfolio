@@ -97,8 +97,8 @@ const roles = [
     'Information Security Specialist',
     'Systems Administrator',
     'Network Administrator',
-    'IT Analyst',
-    'IT Support Specialist'
+    'Information Technology Analyst',
+    'Technical Support Specialist'
 ];
 
 let roleIdx = 0;
