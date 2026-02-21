@@ -97,7 +97,7 @@ const roles = [
     'Information Security Specialist',
     'Systems Administrator',
     'Network Administrator',
-    'Technical Support Engineer',
+    'IT Analyst',
     'IT Support Specialist'
 ];
 
