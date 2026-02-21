@@ -4,7 +4,7 @@
 const navbar = document.querySelector('.navbar');
 
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
+    if (window.scrollY > 80) { // Slightly deeper threshold for stability
         navbar.classList.add('scrolled');
     } else {
         navbar.classList.remove('scrolled');
@@ -168,8 +168,8 @@ if (particlesContainer) {
                     ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
                 if (distance < (canvas.width / 10) * (canvas.height / 10)) {
                     opacityValue = 1 - (distance / 20000);
-                    ctx.strokeStyle = 'rgba(79, 70, 229,' + opacityValue * 0.7 + ')'; // Sharper lines (0.5 -> 0.7)
-                    ctx.lineWidth = 1.2; // Thinner but more opaque for "sharp" look
+                    ctx.strokeStyle = 'rgba(79, 70, 229,' + opacityValue * 0.9 + ')'; // Max opacity for boldness
+                    ctx.lineWidth = 2.5; // Bold lines for sharper visibility
                     ctx.beginPath();
                     ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
                     ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
