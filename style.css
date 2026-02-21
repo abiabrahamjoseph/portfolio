@@ -27,8 +27,6 @@
 
 /* =========================
    GLOBAL RESET & BASE
-  /* =========================
-   CORE DEFAULTS & SCROLL
    ========================= */
 html {
     scroll-behavior: smooth;
@@ -464,7 +462,7 @@ h6 {
     font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: 10px;
-    color: white;
+    color: var(--text-primary);
 }
 
 .mastery-badge {
@@ -481,8 +479,9 @@ h6 {
 
 .mastery-bar-container {
     width: 100%;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.05);
+    height: 6px;
+    background: #f1f5f9;
+    /* Slate 100 */
     border-radius: 10px;
     margin-top: 15px;
     overflow: hidden;
