@@ -1,33 +1,34 @@
 :root {
-    /* Enterprise Professional Palette */
+    /* Enterprise Professional Light Palette */
     --primary: #4f46e5;
     --primary-light: #6366f1;
     --secondary: #6d28d9;
     --accent: #0ea5e9;
 
-    --bg-dark: #0f172a;
-    --bg-darker: #020617;
-    --bg-card: rgba(51, 65, 85, 0.5);
-    /* Brighter, more visible light-gray slate */
+    --bg-dark: #f1f5f9;
+    /* Light Slate 100 */
+    --bg-darker: #ffffff;
+    /* Pure White */
+    --bg-card: rgba(255, 255, 255, 0.9);
 
-    --glass-bg: rgba(241, 245, 249, 0.15);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    /* Sharper borders */
+    --glass-bg: rgba(255, 255, 255, 0.8);
+    --glass-border: rgba(15, 23, 42, 0.1);
+    /* Subtle dark border */
 
-    --text-primary: #ffffff;
-    /* Absolute white for max visibility */
-    --text-muted: #cbd5e1;
-    /* Lighter muted text (Slate 300) */
-    --text-dim: #94a3b8;
-    /* Lighter dim text (Slate 400) */
+    --text-primary: #0f172a;
+    /* Deep Slate for max contrast */
+    --text-muted: #475569;
+    /* Slate 600 */
+    --text-dim: #64748b;
+    /* Slate 500 */
 
     --font-heading: 'Poppins', sans-serif;
     --font-body: 'Inter', sans-serif;
 
     --transition-precise: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
     --transition-smooth: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    --shadow-soft: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
-    --shadow-glow: 0 0 20px rgba(79, 70, 229, 0.2);
+    --shadow-soft: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
+    --shadow-glow: 0 0 30px rgba(79, 70, 229, 0.15);
 }
 
 /* =========================
@@ -121,30 +122,28 @@ h6 {
    ========================= */
 .glass-card {
     background: var(--bg-card);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid var(--glass-border);
     border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-    /* Deeper shadow for elevation visibility */
+    box-shadow: var(--shadow-soft);
     padding: 3rem;
-    /* Generous internal padding */
     transition: var(--transition-precise);
 }
 
 .glass-card:hover {
-    border-color: rgba(79, 70, 229, 0.3);
-    box-shadow: var(--shadow-glow);
+    border-color: var(--primary);
+    box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.15);
 }
 
 /* =========================
    NAVBAR
    ========================= */
 .navbar {
-    background: rgba(2, 6, 23, 0.8);
+    background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    border-bottom: 1px solid var(--glass-border);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.05);
     padding: 20px 0;
     transition: var(--transition-smooth);
 }
@@ -249,7 +248,10 @@ h6 {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding-top: 80px;
+    padding: 140px 0 100px;
+    /* Increased top padding to fix visibility */
+    background: radial-gradient(circle at top right, rgba(79, 70, 229, 0.05), transparent),
+        radial-gradient(circle at bottom left, rgba(14, 165, 233, 0.05), transparent);
 }
 
 #particles-js {
@@ -264,7 +266,8 @@ h6 {
 
 .hero-content {
     position: relative;
-    z-index: 2;
+    z-index: 5;
+    /* Ensure content is above background elements */
 }
 
 .profile-wrapper {
@@ -301,14 +304,13 @@ h6 {
     margin-bottom: 1.25rem;
     font-weight: 800;
     letter-spacing: -0.025em;
-    background: linear-gradient(to right, #ffffff, #cbd5e1);
-    /* Brighter gradient */
+    background: linear-gradient(to right, var(--text-primary), var(--primary));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     line-height: 1.1;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
-    /* Stronger text shadow for pop */
+    filter: none;
+    /* No shadow needed on white bg */
 }
 
 .hero .lead {
@@ -321,6 +323,9 @@ h6 {
     border-right: 2px solid var(--primary);
     padding-right: 5px;
     animation: blink 0.75s step-end infinite;
+    color: var(--primary);
+    /* Role color should pop */
+    font-weight: 600;
 }
 
 /* =========================
@@ -431,7 +436,8 @@ h6 {
     font-size: 3.5rem;
     margin-bottom: 20px;
     color: var(--primary);
-    filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.5));
+    filter: none;
+    /* No shadow on white */
     transition: var(--transition-smooth);
 }
 
@@ -514,10 +520,9 @@ h6 {
 }
 
 .skill-tag {
-    background: rgba(255, 255, 255, 0.08);
-    /* More visible background */
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    /* Sharper borders */
+    background: #f1f5f9;
+    /* Slate 100 */
+    border: 1px solid rgba(15, 23, 42, 0.05);
     padding: 8px 16px;
     border-radius: 6px;
     font-size: 0.8rem;
