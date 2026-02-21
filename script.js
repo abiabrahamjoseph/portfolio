@@ -168,8 +168,8 @@ if (particlesContainer) {
                     ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
                 if (distance < (canvas.width / 10) * (canvas.height / 10)) {
                     opacityValue = 1 - (distance / 20000);
-                    ctx.strokeStyle = 'rgba(79, 70, 229,' + opacityValue * 0.2 + ')'; // Subtle lines
-                    ctx.lineWidth = 1;
+                    ctx.strokeStyle = 'rgba(79, 70, 229,' + opacityValue * 0.5 + ')'; // Increased visibility
+                    ctx.lineWidth = 1.5; // Slightly thicker lines for visibility
                     ctx.beginPath();
                     ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
                     ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
