@@ -143,9 +143,9 @@ if (particlesContainer) {
             let size = (Math.random() * 3) + 1; // Slightly larger particles
             let x = (Math.random() * canvas.width);
             let y = (Math.random() * canvas.height);
-            let directionX = (Math.random() * 0.5) - 0.25;
-            let directionY = (Math.random() * 0.5) - 0.25;
-            let color = 'rgba(79, 70, 229, 0.4)'; // Sharper, more opaque particles
+            let directionX = (Math.random() * 0.3) - 0.15; // Slower, calmer motion
+            let directionY = (Math.random() * 0.3) - 0.15;
+            let color = 'rgba(109, 40, 217, 0.5)'; // Bold Purple (Secondary)
 
             particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
         }
@@ -166,10 +166,10 @@ if (particlesContainer) {
             for (let b = a; b < particlesArray.length; b++) {
                 let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) +
                     ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
-                if (distance < (canvas.width / 10) * (canvas.height / 10)) {
-                    opacityValue = 1 - (distance / 20000);
-                    ctx.strokeStyle = 'rgba(79, 70, 229,' + opacityValue * 0.9 + ')'; // Max opacity for boldness
-                    ctx.lineWidth = 2.5; // Bold lines for sharper visibility
+                if (distance < (canvas.width / 12) * (canvas.height / 12)) {
+                    opacityValue = 1 - (distance / 25000);
+                    ctx.strokeStyle = 'rgba(109, 40, 217,' + opacityValue * 0.7 + ')'; // Bold Purple visibility
+                    ctx.lineWidth = 2.0; // Increased thickness for boldness
                     ctx.beginPath();
                     ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
                     ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
