@@ -140,12 +140,12 @@ if (particlesContainer) {
         particlesArray = [];
         let numberOfParticles = (canvas.height * canvas.width) / 15000;
         for (let i = 0; i < numberOfParticles; i++) {
-            let size = (Math.random() * 2) + 1;
+            let size = (Math.random() * 3) + 1; // Slightly larger particles
             let x = (Math.random() * canvas.width);
             let y = (Math.random() * canvas.height);
             let directionX = (Math.random() * 0.5) - 0.25;
             let directionY = (Math.random() * 0.5) - 0.25;
-            let color = 'rgba(99, 102, 241, 0.15)'; // Muted for professionalism
+            let color = 'rgba(99, 102, 241, 0.5)'; // High visibility particle
 
             particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
         }
@@ -168,7 +168,7 @@ if (particlesContainer) {
                     ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
                 if (distance < (canvas.width / 10) * (canvas.height / 10)) {
                     opacityValue = 1 - (distance / 20000);
-                    ctx.strokeStyle = 'rgba(99, 102, 241,' + opacityValue * 0.3 + ')';
+                    ctx.strokeStyle = 'rgba(99, 102, 241,' + opacityValue * 0.7 + ')'; // High visibility lines
                     ctx.lineWidth = 1;
                     ctx.beginPath();
                     ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
@@ -185,6 +185,7 @@ if (particlesContainer) {
         init();
     });
 
+    // Start animations
     init();
     animate();
 }
@@ -208,7 +209,7 @@ const masteryObserver = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.3 });
 
-const techSection = document.getElementById('tech-mastery');
+const techSection = document.getElementById('expertise'); // Updated from tech-mastery
 if (techSection) {
     masteryObserver.observe(techSection);
 }
