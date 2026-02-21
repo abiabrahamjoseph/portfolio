@@ -93,12 +93,12 @@ function initNavSync() {
  * 2. Typewriter Effect (Cinematic Word Reveal + Technical Roles)
  */
 const roles = [
-    'IT Administrator',
-    'System Admin',
-    'Technical Support Specialist',
-    'Enterprise Infrastructure Specialist',
-    'Expert IT Analyst',
-    'Cybersecurity Aspirant'
+    'Cybersecurity Analyst',
+    'Information Security Specialist',
+    'Systems Administrator',
+    'Network Administrator',
+    'Technical Support Engineer',
+    'IT Support Specialist'
 ];
 
 let roleIdx = 0;
@@ -237,17 +237,26 @@ function initParticlesEngine() {
 }
 
 /**
- * 4. Master Reveal Engine (v6.4 Bulletproof)
+ * 4. Master Reveal Engine (v9.8 Hardened)
  */
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('revealed');
+
+            // Fixed Mastery Bar Logic: One-way smooth reveal
             const bars = entry.target.querySelectorAll('.mastery-bar');
             bars.forEach(bar => {
-                const targetW = bar.style.width;
-                bar.style.width = '0';
-                setTimeout(() => bar.style.width = targetW, 300);
+                if (bar.dataset.width) {
+                    bar.style.width = bar.dataset.width;
+                } else {
+                    const targetW = bar.style.width;
+                    bar.dataset.width = targetW; // Memoize width
+                    bar.style.width = '0';
+                    requestAnimationFrame(() => {
+                        setTimeout(() => bar.style.width = targetW, 50);
+                    });
+                }
             });
             revealObserver.unobserve(entry.target);
         }
@@ -329,7 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initEliteInteractions();
 
     console.log(
-        "%c Abi Abraham Joseph %c Grand Master v9.4 %c",
+        "%c Abi Abraham Joseph %c Grand Master v10.0 %c",
         "color: #fff; background: #6366f1; padding: 5px 12px; border-radius: 4px 0 0 4px; font-weight: bold;",
         "color: #6366f1; background: #f8fafc; padding: 5px 12px; border-radius: 0 4px 4px 0; font-weight: bold;",
         "color: #94a3b8; margin-left: 10px; font-style: italic;"
