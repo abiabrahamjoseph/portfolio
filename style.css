@@ -1,5 +1,5 @@
 /* ==========================================================================
-   ABI ABRAHAM JOSEPH - PROJECT GRAND MASTER (v8.9)
+   ABI ABRAHAM JOSEPH - PROJECT GRAND MASTER (v9.7)
    Definitive UI/UX Suite: Neo-Elite Prismatic Design
    ========================================================================== */
 
@@ -249,18 +249,18 @@ h4,
 }
 
 .navbar.scrolled .navbar-brand {
-    color: var(--primary) !important;
+    color: #1e1b4b !important;
+    /* Deep Indigo / Dark Blue */
+    background: none;
+    -webkit-text-fill-color: initial;
 }
 
 .navbar-brand {
     font-size: 1.5rem;
     font-weight: 800;
-    color: var(--primary);
-    background: linear-gradient(to right, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.02em;
+    color: #1e1b4b !important;
+    /* Deep Indigo / Dark Blue */
     transition: var(--transition-smooth);
 }
 
@@ -397,10 +397,9 @@ h4,
 }
 
 .hero h1 {
-    font-size: clamp(1.8rem, 4.5vw, 2.8rem);
-    /* Slightly smaller for premium balance */
-    margin-bottom: 2rem;
-    /* Increased from 1.2rem for more breathing room */
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    margin-bottom: 1.5rem;
+    /* Reduced for a more balanced layout */
     font-weight: 800;
     letter-spacing: -0.025em;
     color: #000000;
