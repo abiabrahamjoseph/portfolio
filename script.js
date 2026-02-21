@@ -1,10 +1,10 @@
 /* =========================
    NAVBAR SCROLL EFFECT
    ========================= */
-const navbar = document.querySelector('.navbar');
+const navbar = document.getElementById('navbar');
 
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 80) { // Slightly deeper threshold for stability
+    if (window.scrollY > 50) {
         navbar.classList.add('scrolled');
     } else {
         navbar.classList.remove('scrolled');
@@ -146,14 +146,14 @@ if (particlesContainer) {
 
     function init() {
         particlesArray = [];
-        let numberOfParticles = (canvas.height * canvas.width) / 12000; // Optimal density for professionalism
+        let numberOfParticles = (canvas.height * canvas.width) / 8000; // Increased density from 12000
         for (let i = 0; i < numberOfParticles; i++) {
-            let size = (Math.random() * 2.5) + 0.5; // Varied sizes for depth mapping
+            let size = (Math.random() * 3.5) + 1.0; // Slightly larger particles
             let x = (Math.random() * canvas.width);
             let y = (Math.random() * canvas.height);
             let directionX = (Math.random() * 0.4) - 0.2;
             let directionY = (Math.random() * 0.4) - 0.2;
-            let color = 'rgba(109, 40, 217, 0.6)'; // Bold Purple
+            let color = 'rgba(79, 70, 229, 0.5)'; // Matches --primary
 
             particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
         }
@@ -178,12 +178,12 @@ if (particlesContainer) {
                 let range = (canvas.width / 10) * (canvas.height / 10);
                 if (distance < range) {
                     opacityValue = 1 - (distance / range);
-                    ctx.strokeStyle = `rgba(109, 40, 217, ${opacityValue * 0.5})`;
-                    ctx.lineWidth = (1 - (distance / range)) * 1.5; // Dynamic weight
+                    ctx.strokeStyle = `rgba(79, 70, 229, ${opacityValue * 0.5})`;
+                    ctx.lineWidth = (1 - (distance / range)) * 2.5; // Bold lines (increased from 1.5)
 
                     // Constellation glow effect
                     ctx.shadowBlur = 5;
-                    ctx.shadowColor = 'rgba(109, 40, 217, 0.3)';
+                    ctx.shadowColor = 'rgba(79, 70, 229, 0.2)';
 
                     ctx.beginPath();
                     ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
@@ -227,7 +227,7 @@ const masteryObserver = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.3 });
 
-const techSection = document.getElementById('expertise'); // Updated from tech-mastery
+const techSection = document.getElementById('expertise');
 if (techSection) {
     masteryObserver.observe(techSection);
 }
@@ -246,3 +246,55 @@ navLinks.forEach(link => {
         }
     });
 });
+
+// Final Signature Handover logic
+console.log("%c Abi Abraham Joseph - Portfolio v2.0 Finalized %c", "color: #fff; background: #4f46e5; padding: 5px 0;", "background: transparent;");
+
+/* =========================
+   PREMIUM REVEAL ANIMATIONS
+   ========================= */
+const revealOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px"
+};
+
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, revealOptions);
+
+document.querySelectorAll('section, .glass-card, .mastery-card').forEach(el => {
+    el.classList.add('reveal-on-scroll');
+    revealObserver.observe(el);
+});
+
+/* =========================
+   3D TILT EFFECT (DESKTOP)
+   ========================= */
+if (window.innerWidth > 992) {
+    const cards = document.querySelectorAll('.glass-card, .mastery-card, .profile-wrapper');
+
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+        });
+    });
+}
