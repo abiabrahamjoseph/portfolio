@@ -89,7 +89,7 @@ if (particlesContainer) {
             this.color = color;
             this.baseX = x;
             this.baseY = y;
-            this.density = (Math.random() * 30) + 1;
+            this.density = (Math.random() * 20) + 1; // Lower density for smoother trailing
         }
 
         draw() {
@@ -97,6 +97,14 @@ if (particlesContainer) {
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
             ctx.fillStyle = this.color;
             ctx.fill();
+
+            // Subtle glow for the node itself
+            if (this.size > 2) {
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = 'rgba(109, 40, 217, 0.4)';
+            } else {
+                ctx.shadowBlur = 0;
+            }
         }
 
         update() {
@@ -138,14 +146,14 @@ if (particlesContainer) {
 
     function init() {
         particlesArray = [];
-        let numberOfParticles = (canvas.height * canvas.width) / 15000;
+        let numberOfParticles = (canvas.height * canvas.width) / 12000; // Optimal density for professionalism
         for (let i = 0; i < numberOfParticles; i++) {
-            let size = (Math.random() * 3) + 1; // Slightly larger particles
+            let size = (Math.random() * 2.5) + 0.5; // Varied sizes for depth mapping
             let x = (Math.random() * canvas.width);
             let y = (Math.random() * canvas.height);
-            let directionX = (Math.random() * 0.3) - 0.15; // Slower, calmer motion
-            let directionY = (Math.random() * 0.3) - 0.15;
-            let color = 'rgba(109, 40, 217, 0.5)'; // Bold Purple (Secondary)
+            let directionX = (Math.random() * 0.4) - 0.2;
+            let directionY = (Math.random() * 0.4) - 0.2;
+            let color = 'rgba(109, 40, 217, 0.6)'; // Bold Purple
 
             particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
         }
@@ -166,14 +174,24 @@ if (particlesContainer) {
             for (let b = a; b < particlesArray.length; b++) {
                 let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) +
                     ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
-                if (distance < (canvas.width / 12) * (canvas.height / 12)) {
-                    opacityValue = 1 - (distance / 25000);
-                    ctx.strokeStyle = 'rgba(109, 40, 217,' + opacityValue * 0.7 + ')'; // Bold Purple visibility
-                    ctx.lineWidth = 2.0; // Increased thickness for boldness
+
+                let range = (canvas.width / 10) * (canvas.height / 10);
+                if (distance < range) {
+                    opacityValue = 1 - (distance / range);
+                    ctx.strokeStyle = `rgba(109, 40, 217, ${opacityValue * 0.5})`;
+                    ctx.lineWidth = (1 - (distance / range)) * 1.5; // Dynamic weight
+
+                    // Constellation glow effect
+                    ctx.shadowBlur = 5;
+                    ctx.shadowColor = 'rgba(109, 40, 217, 0.3)';
+
                     ctx.beginPath();
                     ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
                     ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
                     ctx.stroke();
+
+                    // Reset shadow for performance
+                    ctx.shadowBlur = 0;
                 }
             }
         }
