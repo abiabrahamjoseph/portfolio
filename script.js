@@ -89,12 +89,12 @@ function initNavSync() {
  * 2. Typewriter Effect (Cinematic Word Reveal + Technical Roles)
  */
 const roles = [
-    'Cybersecurity Analyst',
+    'Technical Support Specialist',
     'Information Security Specialist',
     'Systems Administrator',
-    'Network Administrator',
     'Information Technology Analyst',
-    'Technical Support Specialist'
+    'Network Administrator',
+    'Cybersecurity Analyst'
 ];
 
 let roleIdx = 0;
